@@ -8,7 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const csp = require('express-csp');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+
 const compression = require('compression');
 const cors = require('cors');
 
@@ -58,12 +58,6 @@ const limiter = rateLimit({
   windowMs: 60 * 60 * 1000,
   message: 'Too many request from this IP, please try again in an hour!'
 });
-
-app.post(
-  '/webhook-checkout',
-  bodyParser.raw({ type: 'application/json' }),
-  bookingController.webhookCheckout
-);
 
 app.use('/api', limiter);
 
