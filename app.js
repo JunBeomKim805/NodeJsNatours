@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const csp = require('express-csp');
 const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const compression = require('compression');
 const cors = require('cors');
 
@@ -60,7 +61,7 @@ const limiter = rateLimit({
 
 app.post(
   '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
+  bodyParser.raw({ type: 'application/json' }),
   bookingController.webhookCheckout
 );
 
